@@ -1,16 +1,7 @@
-import "./styles.css";
-
-document.getElementById("app").innerHTML = `
-<h1>TIC TAC TOES</h1>
-<div>
-</div>
-`;
-
 let move = 0; //counter for gamestate
 
 function renderTable() {
   const board = document.getElementById("board");
-
   const table = document.createElement("table");
   table.id = "table";
   var tableBody = document.createElement("tbody");
@@ -54,7 +45,7 @@ function cellPress(cell, board) {
   }
   if (move === 25) {
     alert("It's a draw!");
-    emptyBoard(board);
+    emptyBoard();
     move = 0;
   }
 }
@@ -70,6 +61,24 @@ function startGame(board) {
 }
 
 function checkWinner(board) {
+  //check diagonal
+  let a = board.rows[0].cells[0].innerHTML;
+  let b = board.rows[1].cells[1].innerHTML;
+  let c = board.rows[2].cells[2].innerHTML;
+  let d = board.rows[3].cells[3].innerHTML;
+  let e = board.rows[4].cells[4].innerHTML;
+  let f = board.rows[0].cells[4].innerHTML;
+  let g = board.rows[1].cells[3].innerHTML;
+  let h = board.rows[2].cells[2].innerHTML;
+  let x = board.rows[3].cells[1].innerHTML;
+  let y = board.rows[4].cells[0].innerHTML;
+
+  if (a === b && b === c && c === d && d === e) {
+    win(board);
+  } else if (f === g && g === h && h === x && x === y) {
+    win(board);
+  }
+
   //check for columns
 
   for (var i = 0; i < 5; i++) {
@@ -105,27 +114,10 @@ function checkWinner(board) {
       break;
     }
   }
-
-  //check diagonal
-  let a = board.rows[0].cells[0].innerHTML;
-  let b = board.rows[1].cells[1].innerHTML;
-  let c = board.rows[2].cells[2].innerHTML;
-  let d = board.rows[3].cells[3].innerHTML;
-  let e = board.rows[4].cells[4].innerHTML;
-  let f = board.rows[0].cells[4].innerHTML;
-  let g = board.rows[1].cells[3].innerHTML;
-  let h = board.rows[2].cells[2].innerHTML;
-  let x = board.rows[3].cells[1].innerHTML;
-  let y = board.rows[4].cells[0].innerHTML;
-
-  if (a === b && b === c && c === d && d === e) {
-    win(board);
-  } else if (f === g && g === h && h === x && x === y) {
-    win(board);
-  }
 }
 
-function emptyBoard(board) {
+function emptyBoard() {
+  var board = document.getElementById("table");
   move = 0;
   for (var i = 0; i < 5; i++) {
     for (var j = 0; j < 5; j++) {
@@ -140,5 +132,5 @@ function win(board) {
     currentplayer = 2;
   }
   alert("Player " + currentplayer + " won!");
-  emptyBoard(board);
+  emptyBoard();
 }
