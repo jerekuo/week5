@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 let move = 0; //counter for gamestate
 
 function renderTable() {

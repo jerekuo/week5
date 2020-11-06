@@ -4,8 +4,13 @@ const app = express();
 
 const MongoClient = require("mongodb").MongoClient;
 const uri =
-  "mongodb+srv://jerekuo:MongooseSalasana@cluster0.nk8k3.mongodb.net/Cluster0?retryWrites=true&w=majority";
+  "mongodb+srv://admin:admin@cluster0.nk8k3.mongodb.net/tictactoe?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect((err) => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
 var database = client.connection;
 database.on(
