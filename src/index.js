@@ -12,12 +12,6 @@ client.connect((err) => {
   client.close();
 });
 
-var database = client.connection;
-database.on(
-  "error",
-  console.error.bind(console, "MongoDB did not connect!!!:")
-);
-
 app.set("views", "./views");
 app.set("view engine", "pug");
 
